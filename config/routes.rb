@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get :about,  to: 'static_pages#about'
   get :signup, to: 'users#new'
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   resources :cooks
   get    :login,     to: 'sessions#new'
   post   :login,     to: 'sessions#create'
