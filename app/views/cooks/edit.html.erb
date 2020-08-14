@@ -4,6 +4,12 @@
     <div class="col-md-6 col-md-offset-3">
       <%= form_for(@cook) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
+        <span class="picture">
+          <%= f.label :picture %>　<span class="input-unneed">※任意</span>
+          <%= f.file_field :picture, accept: 'image/jpeg,image/png', class: 'form-control', id: 'cook-picture' %>
+          <%= image_tag(@cook.picture.thumb400.url) if @cook.picture.url.present? %>
+        </span>
+        <p />
         <div class = 'form-group'>
           <%= f.label :name %>　<span class="input-need">※必須</span>
           <%= f.text_field :name, class: 'form-control', id: 'cook_name' %>

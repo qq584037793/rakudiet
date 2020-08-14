@@ -1,6 +1,9 @@
 <li id="cook-<%= cook.id %>">
   <%= link_to gravatar_for(cook.user, size: 50), cook.user %>
   <span class="name"><%= link_to cook.name, cook_path(cook) %></span>
+  <span>
+    <%= link_to((image_tag cook.picture.thumb200.url), cook_path(cook.id), class: 'cook-picture') if cook.picture.url.present? %>
+  </span>
   <span class="description"><%= cook.description %></span><br>
   <span class="required_time">所要時間：<%= cook.required_time %>分　</span>
   <span class="popularity">人気度：<%= cook.popularity %></span><br>

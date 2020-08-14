@@ -1,6 +1,12 @@
 <% provide(:title, "#{@cook.name}") %>
 <div class="container">
   <div class="row">
+  <div class="col-md-4">
+        <span class="picture">
+              <%= link_to((image_tag @cook.picture.thumb400.url), cook_path(@cook.id), class: 'cook-picture') if @cook.picture.url.present? %>
+            </span>
+     </div>
+     <div class="col-md-8">
     <h2 class="cook-name"><%= @cook.name %></h2>
     <div class="change-cook">
       <% if current_user == @cook.user %>
