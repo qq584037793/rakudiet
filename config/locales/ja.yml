@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      cook: 料理
     attributes:
       user:
         id: ID
@@ -13,6 +14,17 @@ ja:
         sex: 性別
         created_at: 登録日時
         updated_at: 更新日時
+      cook:
+        id: ID
+        name: 料理名
+        description: 説明
+        portion: 分量
+        tips: コツ・ポイント
+        reference: 作り方参照用URL
+        required_time: 所要時間
+        popularity: 人気度
+        user_id: 作成者のID
+        cook_memo: クックメモ
   errors:
     messages:
       record_invalid: 'バリデーションに失敗しました: %{errors}'

@@ -1,0 +1,30 @@
+<% provide(:title, "#{@cook.name}") %>
+<div class="container">
+  <div class="row">
+    <h2 class="cook-name"><%= @cook.name %></h2>
+    <div class="change-cook">
+      <% if current_user == @cook.user %>
+        <%= link_to "編集", edit_cook_path(@cook), class: 'edit-cook' %>
+      <% end %>
+      <% if current_user.admin? || (current_user == @cook.user) %>
+        <%= link_to "削除", cook_path(@cook), method: :delete, class: 'delete-dish',
+                                      data: { confirm: "本当に削除しますか？" } %>
+      <% end %>
+    </div>
+    <h4><%= @cook.description %></h4>
+    <h4 class="cook-reference">作り方：<%= link_to "#{@cook.reference}", @cook.reference, target: "_blank" %></h4>
+    <h4 class="cook-portion">分量：<%= @cook.portion %> 人分</h4>
+    <div class="tips">
+      <h5 class="title-tips">コツ・ポイント</h5>
+      <h5><%= @cook.tips %></h5>
+    </div>
+    <div class="show-dish-other-info">
+      <div class="cook-info">
+        <h5>所要時間：</h5><h4><%= @cook.required_time %></h4> <h5>分</h5>
+      </div>
+      <div class="cook-info">
+        <h5>人気度：</h5><h4><%= @cook.popularity %></h4>
+      </div>
+    </div>
+  </div>
+</div>

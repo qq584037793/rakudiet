@@ -1,0 +1,15 @@
+<li id="cook-<%= cook.id %>">
+  <%= link_to gravatar_for(cook.user, size: 50), cook.user %>
+  <span class="name"><%= link_to cook.name, cook_path(cook) %></span>
+  <span class="description"><%= cook.description %></span><br>
+  <span class="required_time">所要時間：<%= cook.required_time %>分　</span>
+  <span class="popularity">人気度：<%= cook.popularity %></span><br>
+  <span class="reference"><%= link_to "作り方", cook.reference, target: :_blank %></span>
+  <span class="timestamp">
+    <%= time_ago_in_words(cook.created_at) %>前に投稿
+  </span>
+  <% if current_user.admin? || (current_user == cook.user) %>
+    <%= link_to "削除", cook_path(cook), method: :delete,
+                       data: { confirm: "本当に削除しますか？" } %>
+  <% end %>
+</li>

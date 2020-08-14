@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find(params[:id])
+      @cooks = @user.cooks.paginate(page: params[:page], per_page: 5)
   end
 
   def index
@@ -38,12 +39,21 @@ class UsersController < ApplicationController
     end
   end
   
-  def destroy
-     @user = User.find(params[:id])
-     @user.destroy
-     flash[:success] = "アカウントを削除しました"
-     redirect_to root_url
-   end
+    def destroy
+    @user = User.find(params[:id])
+    if current_user.admin?
+      @user.destroy
+      flash[:success] = "ユーザーの削除に成功しました"
+      redirect_to users_url
+    elsif current_user?(@user)
+      @user.destroy
+      flash[:success] = "自分のアカウントを削除しました"
+      redirect_to root_url
+    else
+      flash[:danger] = "他人のアカウントは削除できません"
+      redirect_to root_url
+    end
+  end
   
   private
 
