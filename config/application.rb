@@ -18,6 +18,7 @@ module Rakudiet
       view_specs: false,
       helper_specs: false,
       routing_specs: false
+      config.time_zone = 'Tokyo'
     end
   end
 end
