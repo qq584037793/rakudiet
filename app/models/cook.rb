@@ -1,6 +1,7 @@
 class Cook < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy 
   mount_uploader :picture, PictureUploader 
   validates :user_id, presence: true
   validates :name, presence: true, length: { maximum: 30 }
@@ -15,6 +16,10 @@ class Cook < ApplicationRecord
             allow_nil: true
             
   validate  :picture_size
+  
+  def feed_comment(cook_id)
+    Comment.where("cook_id = ?", cook_id)
+  end
   
   private
 

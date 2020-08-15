@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   delete :logout,    to: 'sessions#destroy'
   post   "favorites/:cook_id/create"  => "favorites#create"
   delete "favorites/:cook_id/destroy" => "favorites#destroy"
+  
+  resources :comments, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

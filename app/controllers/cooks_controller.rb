@@ -6,6 +6,7 @@ class CooksController < ApplicationController
     
     def show
       @cook = Cook.find(params[:id])
+      @comment = Comment.new
     end
     
     def create
