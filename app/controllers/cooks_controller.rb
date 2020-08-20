@@ -4,6 +4,10 @@ class CooksController < ApplicationController
       @cook = Cook.new
     end
     
+    def index
+      @cook = Cook.new
+    end
+    
     def show
       @cook = Cook.find(params[:id])
       @comment = Comment.new
