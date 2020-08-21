@@ -21,6 +21,23 @@
     </div>
     <h4><%= @cook.description %></h4>
     <h4 class="cook-reference">作り方：<%= link_to "#{@cook.reference}", @cook.reference, target: "_blank" %></h4>
+    <div class="ingredients">
+      <h5 class="title-ingredients">材料</h5>
+      <div class="row">
+        <div class="col-md-8">
+          <table class="ingredient">
+            <% @cook.ingredients.each do |i| %>
+              <% if i.name.present? %>
+                <tr>
+                  <td><%= i.name %></td>
+                  <td><%= i.quantity %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
     <h4 class="cook-portion">分量：<%= @cook.portion %> 人分</h4>
     <div class="tips">
       <h5 class="title-tips">コツ・ポイント</h5>

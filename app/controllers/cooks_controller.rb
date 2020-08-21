@@ -2,6 +2,7 @@ class CooksController < ApplicationController
     before_action :logged_in_user
     def new
       @cook = Cook.new
+      @cook.ingredients.build
     end
     
     def index
@@ -54,7 +55,7 @@ class CooksController < ApplicationController
     def cook_params
       params.require(:cook).permit(:name, :description, :portion, :tips,
                                    :reference, :required_time, :popularity,
-                                   :cook_memo, :picture)
+                                   :cook_memo, :picture,ingredients_attributes: [:id, :name, :quantity])
     end
     
     

@@ -10,6 +10,15 @@
   <span class="required_time">所要時間：<%= cook.required_time %>分　</span>
   <span class="popularity">人気度：<%= cook.popularity %></span><br>
   <span class="reference"><%= link_to "作り方", cook.reference, target: :_blank %></span>
+  <div class="cook-ingredient">
+    <p class="title-ingredient-mini">【材料】</p>
+    <% cook.ingredients.each_with_index do |ing, i| %>
+      <% if ing.name.present? %>
+        <%= "｜" unless i == 0 %><%= ing.name %>: <%= ing.quantity %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="cook-other-info">
   <span class="timestamp">
     <%= time_ago_in_words(cook.created_at) %>前に投稿
   </span>

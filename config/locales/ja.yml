@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       cook: 料理
       comment: コメント
+      ingredient: 材料
     attributes:
       user:
         id: ID
@@ -31,6 +32,10 @@ ja:
         user_id: コメント投稿者のID
         dish_id: コメントされた料理のID
         content: コメント
+      ingredient:
+        cook_id: 紐づいた料理のID
+        name: 材料（10種類まで登録可）
+        quantity: 量
   errors:
     messages:
       record_invalid: 'バリデーションに失敗しました: %{errors}'
