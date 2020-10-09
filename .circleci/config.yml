@@ -17,7 +17,7 @@ jobs:
           command: docker-compose up -d
       - run:
           name: データベースのセットアップ
-          command: docker-compose exec web rails db:create  &&  docker-compose exec web rails db:migrate
+          command: docker-compose exec web rails db:create -d  &&  docker-compose exec web rails db:migrate
 
 
       - run:

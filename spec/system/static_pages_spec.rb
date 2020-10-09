@@ -31,5 +31,3 @@ RSpec.describe "StaticPages", type: :system do
     end
   end
 end
-  
-

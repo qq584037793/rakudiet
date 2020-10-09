@@ -13,10 +13,10 @@ class FavoritesController < ApplicationController
       format.html { redirect_to request.referrer || root_url }
       format.js
     end
-    
+
     if @user != current_user
       @user.notifications.create(cook_id: @cook.id, variety: 1,
-                                 from_user_id: current_user.id) 
+                                 from_user_id: current_user.id)
       @user.update_attribute(:notification, true)
     end
   end
@@ -30,4 +30,3 @@ class FavoritesController < ApplicationController
     end
   end
 end
-

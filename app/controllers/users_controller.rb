@@ -1,21 +1,23 @@
 class UsersController < ApplicationController
-    before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy,
-                                          :following, :followers]
-    before_action :correct_user,   only: [:edit, :update]
+  before_action :logged_in_user, only: [
+    :index, :show, :edit, :update, :destroy,
+    :following, :followers,
+  ]
+  before_action :correct_user, only: [:edit, :update]
 
   def new
-      @user = User.new
+    @user = User.new
   end
 
   def show
-      @user = User.find(params[:id])
-      @cooks = @user.cooks.paginate(page: params[:page], per_page: 5)
+    @user = User.find(params[:id])
+    @cooks = @user.cooks.paginate(page: params[:page], per_page: 5)
   end
 
   def index
-      @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page])
   end
-  
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -25,11 +27,11 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params_update)
@@ -39,8 +41,8 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
-  
-    def destroy
+
+  def destroy
     @user = User.find(params[:id])
     if current_user.admin?
       @user.destroy
@@ -55,33 +57,32 @@ class UsersController < ApplicationController
       redirect_to root_url
     end
   end
-    
-    def following
-      @title = "フォロー中"
-      @user  = User.find(params[:id])
-      @users = @user.following.paginate(page: params[:page])
-      render 'show_follow'
-    end
 
-    def followers
-      @title = "フォロワー"
-      @user  = User.find(params[:id])
-      @users = @user.followers.paginate(page: params[:page])
-      render 'show_follow'
-    end
-  
+  def following
+    @title = "フォロー中"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "フォロワー"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
   end
-  
 
   def user_params_update
     params.require(:user).permit(:name, :email, :introduction, :sex)
   end
-  
+
   def correct_user
     @user = User.find(params[:id])
     if !current_user?(@user)
@@ -89,5 +90,4 @@ class UsersController < ApplicationController
       redirect_to(root_url)
     end
   end
-  
 end

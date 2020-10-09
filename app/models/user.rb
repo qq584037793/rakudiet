@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   before_save :downcase_email
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -25,45 +25,38 @@ class User < ApplicationRecord
     Cook.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
   end
-  
+
   def follow(other_user)
     following << other_user
   end
 
-  
   def unfollow(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
   end
 
- 
   def following?(other_user)
     following.include?(other_user)
   end
-               
+
   def followed_by?(other_user)
     followers.include?(other_user)
   end
- 
+
   def favorite(cook)
     Favorite.create!(user_id: id, cook_id: cook.id)
   end
-
 
   def unfavorite(cook)
     Favorite.find_by(user_id: id, cook_id: cook.id).destroy
   end
 
-
   def favorite?(cook)
     !Favorite.find_by(user_id: id, cook_id: cook.id).nil?
   end
 
-
-  
   private
-    def downcase_email
-      self.email = email.downcase
-    end
-    
 
+  def downcase_email
+    self.email = email.downcase
+  end
 end
