@@ -48,7 +48,12 @@
         <h5>所要時間：</h5><h4><%= @cook.required_time %></h4> <h5>分</h5>
       </div>
       <div class="cook-info">
-        <h5>人気度：</h5><h4><%= @cook.popularity %></h4>
+        <h5>人気度：</h5>
+        <h4>
+          <% if @cook.popularity.present? %>
+            <%= "★" * @cook.popularity %><%= "☆" * (5 - @cook.popularity) %>
+          <% end %>
+        </h4>
       </div>
       <div class="comment">
         <%= render "comments/feed_comments" %>

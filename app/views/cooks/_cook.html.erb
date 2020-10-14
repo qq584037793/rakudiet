@@ -8,7 +8,11 @@
   <%= render 'users/favorite_form' %>
   <span class="description"><%= cook.description %></span><br>
   <span class="required_time">所要時間：<%= cook.required_time %>分　</span>
-  <span class="popularity">人気度：<%= cook.popularity %></span><br>
+  <span class="popularity">人気度：
+    <% if @cook.popularity.present? %>
+      <%= "★" * cook.popularity %><%= "☆" * (5 - cook.popularity) %>
+    <% end %>
+  </span>
   <span class="reference"><%= link_to "作り方", cook.reference, target: :_blank %></span>
   <div class="cook-ingredient">
     <p class="title-ingredient-mini">【材料】</p>
