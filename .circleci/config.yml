@@ -34,8 +34,7 @@ jobs:
           image: circleci/classic:edge
       steps:
           - checkout
-          - add_ssh_keys: -----BEGIN RSA PRIVATE KEY-----
-            MIIEowIBAAKCAQEA4MtQVJPbhnpIXXBeUarhU6Uvm1Z7eauUX7XUC3zEHplWxPu1
+          - add_ssh_keys: " MIIEowIBAAKCAQEA4MtQVJPbhnpIXXBeUarhU6Uvm1Z7eauUX7XUC3zEHplWxPu1
             VxQfU4rZb2PkWuLpVHL7zxiUELlcJT4hun8Iaek0pA6BynVHFvXvMWVdLGP65erR
             3icqMVaw/woShS9HytjnvsfBvB+UJFI8iCvNgNcd416DW2H+z3TqA6Y+tAqAngNd
             oQMN8LHiNOQDUhJaGb4jNlJMhSH6NFzdwJE0a1sP0yvOZvlCuB7AKa0YGzQCaHSf
@@ -59,8 +58,7 @@ jobs:
             w1PpAbq37zCkC441PKDnHbbNiAysEWehLGIphWgUXlfGjkIDUegHKsTXgQbzq6hN
             5HpsRQKBgAEWHbnoDV0O7oe4C2j/vfeFGgsr+Cgp0FxHt/GuujWoFjJma2vUjtMk
             mRVEqC9kZH4btQHoiIlaN97CD2FPT18Nov8OeFjkd3VcLfnZ2m1adZjbLdjuTVfi
-            1FxPGsDMsBTBtBrllLWxeiupArCzujYnTNhGdIF8fEPlxwNvkfuR
-            -----END RSA PRIVATE KEY-----
+            1FxPGsDMsBTBtBrllLWxeiupArCzujYnTNhGdIF8fEPlxwNvkfuR "
           - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/rails/rakudiet/ && git pull origin master'
 
 
