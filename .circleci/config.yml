@@ -34,7 +34,33 @@ jobs:
           image: circleci/classic:edge
       steps:
           - checkout
-          - add_ssh_keys:
+          - add_ssh_keys: -----BEGIN RSA PRIVATE KEY-----
+            MIIEowIBAAKCAQEA4MtQVJPbhnpIXXBeUarhU6Uvm1Z7eauUX7XUC3zEHplWxPu1
+            VxQfU4rZb2PkWuLpVHL7zxiUELlcJT4hun8Iaek0pA6BynVHFvXvMWVdLGP65erR
+            3icqMVaw/woShS9HytjnvsfBvB+UJFI8iCvNgNcd416DW2H+z3TqA6Y+tAqAngNd
+            oQMN8LHiNOQDUhJaGb4jNlJMhSH6NFzdwJE0a1sP0yvOZvlCuB7AKa0YGzQCaHSf
+            R67q/aNC8QzRYskzJa7WIhu7DRxcQQOsk9KkMjPSDw1W79CXo7SnuDcbobL2FQ2O
+            DIE2NqJI+jpnxr1dbyqUHayyc0jPNWC8aTlqAwIDAQABAoIBAQCvnwfuW+m5AVYB
+            8iUuBqOtlrM/1+v1nY/4ynSUWPBbu46nrML6+hSTTzoapV8lhnumZ4LFRD2BZ19P
+            FWCCdHadT/25YkASbVeR36f03m1RnfbJo5A80DpNe54iUrsvZEXhe15qlWONVtqF
+            Gd6CwD34N5f5J8DWJxRM/dlJ6pq4SrkvO+z54wjKU2fhjgySS8dXCrv7LG8wAqvs
+            LHivowcJ+F6ibFfA0j7wj7GCXQBmU6vNX0a1fgfuGk/QGBtWpl/WV7Csa8T+EoBX
+            0CdxJccPPJlbWTt5vSshuozhiNSem8AiSz1V59Dv7niPVfnho8JfQFf40JC44Pdr
+            qzPsKAkxAoGBAPgTrb5jtL386bqAOPNZltuO1Ix1Uj9b+YWPwlMEUJrYmtxn2IWu
+            54/rVAfsMBh/6luOZQC9ipb1n8P+c/dn91HnQyls3lmHlJf7JFK0FEXLISEGfWmk
+            o7qNCRPFjjAl7yNeNFhEX13chdvMkq8v0Fpm36puAFBMmjUjV4nzZcf5AoGBAOf5
+            RZD4f0hwzGYjxDI+RO/r2u3WcVUXls3G6oGOFGW6sWXrVoNbZ+xGWfEIptlM+pe4
+            zSAMWcUkt4XV4g7R6DZEwgIEB/CengyXB0TeLrxLtIuf2zdh4a+Myh1BOYlIfnxZ
+            yI6oyDUpVHfKAmnHK/NXt636Al0xqIujNwiDqBjbAoGAHW5AO4kapTt/Axg5KW2k
+            fxG3154Hjuq7dIP0muK1KVmvLZzITDvOzv0tL+9uWUm7pPcEtozGB1jGhnsGiQB1
+            j+ruxdhbnKWAFHPAAGvKx+jsWj2p3UGiBvy6afUTBFVLxJdlgF9ELR9/Ze8kK9Jx
+            VnhD6rU4Jk6gMNOri/srRQkCgYAwZng3WUHlcXOUVB4ZhZiInqNdQIMBCBz07m37
+            fhOPbjaZV1MDsUyrpboaan21lTQr9+kEqM8KLTEFgaza/rz+pbX9Ca5GbDH52oEv
+            w1PpAbq37zCkC441PKDnHbbNiAysEWehLGIphWgUXlfGjkIDUegHKsTXgQbzq6hN
+            5HpsRQKBgAEWHbnoDV0O7oe4C2j/vfeFGgsr+Cgp0FxHt/GuujWoFjJma2vUjtMk
+            mRVEqC9kZH4btQHoiIlaN97CD2FPT18Nov8OeFjkd3VcLfnZ2m1adZjbLdjuTVfi
+            1FxPGsDMsBTBtBrllLWxeiupArCzujYnTNhGdIF8fEPlxwNvkfuR
+            -----END RSA PRIVATE KEY-----
           - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/rails/rakudiet/ && git pull origin master'
 
 
