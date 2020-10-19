@@ -18,8 +18,6 @@ jobs:
       - run:
           name: データベースのセットアップ
           command: docker-compose exec web bundle exec rails db:create db:migrate RAILS_ENV=test
-
-
       - run:
           name: RSpecテスト実行
           command: docker-compose exec web bundle exec bin/rspec
@@ -33,7 +31,6 @@ jobs:
       machine:
           image: circleci/classic:edge
       steps:
-          - checkout
           - add_ssh_keys: 
             fingerprints:
               - 5d:f8:24:ee:43:b0:2a:12:62:63:cf:b6:1b:31:0b:e0
