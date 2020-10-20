@@ -3,20 +3,28 @@ orbs:
   ruby: circleci/ruby@0.1.2 
 
 jobs:
-  deploy:
-      machine:
-          image: circleci/classic:edge
-      steps:
-          - add_ssh_keys: 
-              fingerprints:
-                - 5d:f8:24:ee:43:b0:2a:12:62:63:cf:b6:1b:31:0b:e0
-          - run: ssh -p $Port $User@$Hostname "cd /var/www/rails/rakudiet/deploy.sh"
+  build:
+    docker:
+      - image: circleci/ruby:2.6.3-stretch-node
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Dockerコンテナのビルド
+          command: docker-compose build
+      - run:
+          name: Dockerコンテナの起動
+          command: docker-compose up -d
+      - run:
+          name: データベースのセットアップ
+          command: docker-compose exec web bundle exec rails db:create db:migrate RAILS_ENV=test
+      - run:
+          name: RSpecテスト実行
+          command: docker-compose exec web bundle exec bin/rspec
+      - run:
+          name: Rubocopテスト実行
+          command: docker-compose exec web bundle exec rubocop
+      - run:
+          name: Dockerコンテナの停止
+          command: docker-compose down   
 
-workflows:
-   version: 2.1
-   deploy:
-       jobs:
-           - deploy:
-               filters:
-                   branches:
-                       only: master
