@@ -1,24 +1,42 @@
-# README
+# アプリケーションの概要
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+作った料理を記録して共有できる、料理投稿SNSサービス。(ダイエット特化型) <www.rakudiet.work> 
 
-Things you may want to cover:
+# 技術的ポイント
+・**Github**でissue作成→branch作成→プルリク→マージ、一人擬似チーム開発する
+・**RSpec**でModel, Request, Systemテスト記述  
+・**Ajax**を用いた非同期処理（フォロー/未フォロー、お気に入り登録/未登録などの切り替え表示）  
+・**Bootstrap**によるレスポンシブ対応  
+・**Rubocop**を使用したコード規約に沿った開発   
+・**AWS**EC2へデプロイする(データベースはRDS、アプリケーションサーバーはUnicorn、WebサーバーはNginx) 
+・**Docker**を開発環境にする
+・**CircleCI**で自動ビルド＆テスト
 
-* Ruby version
+# アプリケーションの機能
+1.　作った料理を投稿  
+2.    料理画像を投稿（CarrierWaveを使用）      
+3.    フォロー  
+4.    お気に入り登録  
+5.    コメント  
+6.    通知（お気に入り登録 があった場合）  
+7.    検索（Ransackを使用）    
+8.    登録とログイン  
+  
 
-* System dependencies
+# 環境
+■フレームワーク  
+　Rails 5.2.4.3  
+■データベース  
+　PostgreSQL　12.3  
+　AWS RDS Mysql 5.7.26
 
-* Configuration
+# 現時点で友達と家族を使ってみた所、以下のアドバイスをもらえました:
+1.　日本語は読めない、翻訳が欲しい
+2.　ユーザー登録せずに、内容(料理)を見たい
+3. 　自分のユーザーアイコン設定したい　etc.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# アドバイスに沿ってこれからやる事:
+1.　Google Translate API　導入する
+2. 　ゲストログインとユーザーアイコン　実装(済)
+3. 　capistrano で自動デプロイ
+4. 　テストコード改善
