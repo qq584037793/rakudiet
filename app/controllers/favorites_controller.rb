@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
     @favorites = current_user.favorites
   end
 
-
   def create
     @cook = Cook.find(params[:cook_id])
     @user = @cook.user
