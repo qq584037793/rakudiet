@@ -43,7 +43,7 @@ class CooksController < ApplicationController
     if current_user.admin? || current_user?(@cook.user)
       @cook.destroy
       flash[:success] = "料理が削除されました"
-      redirect_to request.referrer == user_url(@cook.user) ? user_url(@cook.user) : root_url
+      redirect_to request.referer == user_url(@cook.user) ? user_url(@cook.user) : root_url
     else
       flash[:danger] = "他人の料理は削除できません"
       redirect_to root_url
